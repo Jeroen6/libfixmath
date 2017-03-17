@@ -15,6 +15,7 @@ fix16_t fix16_exp(fix16_t inValue) {
 	if(inValue <= -772243  ) return 0;
 
 	#ifndef FIXMATH_NO_CACHE
+	#warning Variable 'tempIndex' is reassigned a value before the old one has been used.
 	fix16_t tempIndex = (inValue ^ (inValue >> 16));
 	tempIndex = (inValue ^ (inValue >> 4)) & 0x0FFF;
 	if(_fix16_exp_cache_index[tempIndex] == inValue)

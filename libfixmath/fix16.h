@@ -91,7 +91,7 @@ static inline fix16_t fix16_abs(fix16_t x)
 static inline fix16_t fix16_floor(fix16_t x)
 	{ return (x & 0xFFFF0000UL); }
 static inline fix16_t fix16_ceil(fix16_t x)
-	{ return (x & 0xFFFF0000UL) + (x & 0x0000FFFFUL ? fix16_one : 0); }
+	{ return (x & 0xFFFF0000UL) + ((x & 0x0000FFFFUL) ? fix16_one : 0); }
 static inline fix16_t fix16_min(fix16_t x, fix16_t y)
 	{ return (x < y ? x : y); }
 static inline fix16_t fix16_max(fix16_t x, fix16_t y)
@@ -270,7 +270,7 @@ extern fix16_t fix16_from_str(const char *buf);
 #define FIXMATH_COMBINE_I_M(i, m) \
 ( \
     ( \
-        (    i ) \
+        ((uint32_t)i ) \
         << 16 \
     ) \
     | \
